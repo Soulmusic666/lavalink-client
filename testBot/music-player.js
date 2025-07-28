@@ -295,6 +295,13 @@ client.on("raw", d => client.lavalink.sendRawData(d));
 
 console.log("🎵 Music Bot Starting...");
 console.log("📝 Type !help for commands");
-console.log("🔍 Debug - Token loaded:", process.env.DISCORD_TOKEN ? "✅ YES" : "❌ NO");
-console.log("🔍 Debug - Token length:", process.env.DISCORD_TOKEN ? process.env.DISCORD_TOKEN.length : "undefined");
+
+// Check if token is loaded
+if (!process.env.DISCORD_TOKEN || process.env.DISCORD_TOKEN === 'your_discord_bot_token_here') {
+    console.error("❌ Error: DISCORD_TOKEN not found in .env file!");
+    console.error("📝 Please edit .env file and add your Discord bot token");
+    console.error("💡 Example: DISCORD_TOKEN=MTxxxxxxxxxxxxxxxxxxxxx");
+    process.exit(1);
+}
+
 client.login(process.env.DISCORD_TOKEN);
